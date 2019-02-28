@@ -2,7 +2,9 @@
 
 git clone https://github.com/xualiang/typora-book.git
 
-修改typora图片存储位置，设置为您所clone下来的images目录的绝对路径
+修改typora图片存储位置，设置为您所clone下来的images目录的绝对路径，如下：
+
+![image-20190228223247375](images/image-20190228223247375.png)
 
 
 
