@@ -21,6 +21,10 @@
 
 The frameworks provided by Heterogeneous Storage and Archival Storage generalizes the HDFS architecture to include other kinds of storage media including *SSD* and *memory*. Users may choose to store their data in SSD or memory for a better performance.
 
+*Archival Storage*是一种解决方案，可将不断增长的存储容量与计算容量分离。具有更高密度和更低成本的存储以及低计算能力的节点变得可用并且可以用作群集中的冷存储。根据策略，热数据可以转移为寒冷。向冷存储添加更多节点可以使存储增长，而与群集中的计算容量无关。
+
+由异构存储和存档存储提供的框架将HDFS架构概括为包括其他类型的存储介质，包括*SSD*和*存储器*。用户可以选择将其数据存储在SSD或内存中以获得更好的性能。
+
 ## Storage Types and Storage Policies
 
 ### Storage Types: ARCHIVE, DISK, SSD and RAM_DISK
@@ -30,6 +34,12 @@ The first phase of [Heterogeneous Storage (HDFS-2832)](https://issues.apache.org
 A new storage type *ARCHIVE*, which has high storage density (petabyte of storage) but little compute power, is added for supporting archival storage.
 
 Another new storage type *RAM_DISK* is added for supporting writing single replica files in memory.
+
+[异构存储](https://issues.apache.org/jira/browse/HDFS-2832)的第一阶段[（HDFS-2832）](https://issues.apache.org/jira/browse/HDFS-2832)将DataNode存储模型从单个存储（可能对应于多个物理存储介质[）](https://issues.apache.org/jira/browse/HDFS-2832)更改为存储集合，每个存储对应于一个物理存储介质。它还添加了存储类型的概念，例如DISK和SSD，其中DISK是默认存储类型。
+
+添加了一种新的存储类型*ARCHIVE*，它具有高存储密度（PB级存储）但计算能力很小，可用于支持存档存储。
+
+添加了另一种新的存储类型*RAM_DISK*，用于支持在内存中写入单个副本文件。
 
 ### Storage Policies: Hot, Warm, Cold, All_SSD, One_SSD and Lazy_Persist
 
