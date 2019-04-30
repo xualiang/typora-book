@@ -1,8 +1,12 @@
 ZooKeeper提供了Java和C的binding. 本文关注Java相关的API.
 
-\#1 准备工作# 拷贝ZooKeeper安装目录下的zookeeper.x.x.x.jar文件到项目的classpath路径下.
+# 1. 准备工作
 
-\#2 创建连接和回调接口# 首先需要创建ZooKeeper对象, 后续的一切操作都是基于该对象进行的.
+拷贝ZooKeeper安装目录下的zookeeper.x.x.x.jar文件到项目的classpath路径下.
+
+# 2. 创建连接和回调接口
+
+首先需要创建ZooKeeper对象, 后续的一切操作都是基于该对象进行的.
 
 ```
 ZooKeeper(String connectString, int sessionTimeout, Watcher watcher) throws IOException
@@ -50,7 +54,9 @@ public class ZKConnection {
 }
 ```
 
-\#3 创建znode# ZooKeeper对象的create方法用于创建znode.
+# 3. 创建znode
+
+ZooKeeper对象的create方法用于创建znode.
 
 ```
 String create(String path, byte[] data, List acl, CreateMode createMode);
@@ -72,7 +78,9 @@ public void create(String nodePath, byte[] data) throws Exception {
 }
 ```
 
-\#4 获取子node列表# ZooKeeper对象的getChildren方法用于获取子node列表.
+# 4 获取子node列表
+
+ZooKeeper对象的getChildren方法用于获取子node列表.
 
 ```
 List getChildren(String path, boolean watch);
@@ -80,7 +88,9 @@ List getChildren(String path, boolean watch);
 
 watch参数用于`指定是否监听path node的子node的增加和删除事件`, 以及`path node本身的删除事件`.
 
-\#5 判断znode是否存在# ZooKeeper对象的exists方法用于判断指定znode是否存在.
+# 5 判断znode是否存在
+
+ZooKeeper对象的exists方法用于判断指定znode是否存在.
 
 ```
 Stat exists(String path, boolean watch);
@@ -88,7 +98,9 @@ Stat exists(String path, boolean watch);
 
 watch参数用于`指定是否监听path node的创建, 删除事件, 以及数据更新事件`. 如果该node存在, 则返回该node的状态信息, 否则返回null.
 
-\#6 获取node中关联的数据# ZooKeeper对象的getData方法用于获取node关联的数据.
+# 6 获取node中关联的数据
+
+ZooKeeper对象的getData方法用于获取node关联的数据.
 
 ```
 byte[] getData(String path, boolean watch, Stat stat);
@@ -97,7 +109,9 @@ byte[] getData(String path, boolean watch, Stat stat);
 1. watch参数用于指定`是否监听path node的删除事件, 以及数据更新事件`, `注意, 不监听path node的创建事件`, 因为如果path node不存在, 该方法将抛出KeeperException.NoNodeException异常.
 2. stat参数是个传出参数, `getData方法会将path node的状态信息设置到该参数中`.
 
-\#7 更新node中关联的数据# ZooKeeper对象的setData方法用于更新node关联的数据.
+# 7 更新node中关联的数据
+
+ZooKeeper对象的setData方法用于更新node关联的数据.
 
 ```
 Stat setData(final String path, byte data[], int version);
@@ -107,15 +121,19 @@ Stat setData(final String path, byte data[], int version);
 2. version参数指定要更新的数据的版本, `如果version和真实的版本不同, 更新操作将失败. 指定version为-1则忽略版本检查`.
 3. 返回path node的状态信息.
 
-\#8 删除znode# ZooKeeper对象的delete方法用于删除znode.
+# 8 删除znode
+
+ZooKeeper对象的delete方法用于删除znode.
 
 ```
 void delete(final String path, int version);
 ```
 
-\#9 其余接口# 请查看ZooKeeper对象的API文档.
+# 9 其余接口
 
-\#10 代码实例#
+请查看ZooKeeper对象的API文档.
+
+#10 代码实例
 
 ```
 public class JavaApiSample implements Watcher {
@@ -277,7 +295,7 @@ public class JavaApiSample implements Watcher {
 }
 ```
 
-\#11 需要注意的几个地方#
+#11 需要注意的几个地方
 
 1. znode中关联的数据`不能超过1M`. `zookeeper的使命是分布式协作, 而不是数据存储`.
 2. getChildren, getData, exists方法可指定`是否监听相应的事件`. 而create, delete, setData方法则会`触发相应的事件的发生`.
