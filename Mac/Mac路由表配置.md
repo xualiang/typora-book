@@ -43,3 +43,21 @@ route -n add 0.0.0.0 192.168.31.1
  
 
 查看路由：netstat -nr
+
+
+
+### route命令
+
+mac route命令同时访问内外网 
+sudo route -n add -net 192.168.0.0 -netmask 255.255.255.0 192.168.5.254 
+sudo route -n add -net 192.168.3.0 -netmask 255.255.255.0 192.168.5.254 
+sudo route -n add -net 192.168.2.0 -netmask 255.255.255.0 192.168.5.254
+
+Windows route命令同时访问内外网 
+route add -p 192.168.3.0 mask 255.255.255.0 192.168.5.254 
+route add -p 192.168.0.0 mask 255.255.255.0 192.168.5.254 
+
+作者：不羁的小卓子 
+来源：CSDN 
+原文：https://blog.csdn.net/zhuo212/article/details/47336063 
+版权声明：本文为博主原创文章，转载请附上博文链接！
