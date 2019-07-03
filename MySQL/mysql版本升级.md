@@ -35,3 +35,11 @@ service mysqld start
 启动完成后，输入命令查看MySQL版本号：
 
 mysql -V
+
+
+
+执行以下命令升级系统表：
+
+mysql_upgrade -uroot -p
+
+执行完后，记得重启mysqld
