@@ -9,3 +9,9 @@
 ### 复制文件路径
 
 Option+command+c
+
+
+
+### 显示隐藏文件
+
+shift + command + .
