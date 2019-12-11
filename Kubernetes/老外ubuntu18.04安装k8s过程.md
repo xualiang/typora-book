@@ -18,7 +18,7 @@ Let’s jump into the k8s installation and configuration steps.
 
 Login to the master node and configure its hostname using the hostnamectl command
 
-```
+```sh
 linuxtechi@localhost:~$ sudo hostnamectl set-hostname "k8s-master"
 linuxtechi@localhost:~$ exec bash
 linuxtechi@k8s-master:~$
@@ -26,7 +26,7 @@ linuxtechi@k8s-master:~$
 
 Login to Slave / Worker Nodes and configure their hostname respectively using the hostnamectl command,
 
-```
+```sh
 linuxtechi@localhost:~$ sudo hostnamectl set-hostname k8s-worker-node1
 linuxtechi@localhost:~$ exec bash
 linuxtechi@k8s-worker-node1:~$
@@ -48,20 +48,20 @@ Add the following lines in /etc/hosts file on all three systems,
 
 Run the below apt-get command to install Docker on Master node,
 
-```
+```sh
 linuxtechi@k8s-master:~$ sudo apt-get install docker.io -y
 ```
 
 Run the below apt-get command to install docker on slave nodes,
 
-```
+```sh
 linuxtechi@k8s-worker-node1:~$ sudo apt-get install docker.io -y
 linuxtechi@k8s-worker-node2:~$ sudo apt-get install docker.io -y
 ```
 
 Once the Docker packages are installed on all the three systems , start and enable the docker service using below systemctl commands, these commands needs to be executed on master and slave nodes.
 
-```
+```sh
 ~$ sudo systemctl start docker
 ~$ sudo systemctl enable docker
 Synchronizing state of docker.service with SysV service script with /lib/systemd/systemd-sysv-install.
@@ -71,7 +71,7 @@ Executing: /lib/systemd/systemd-sysv-install enable docker
 
 Use below docker command to verify which Docker version has been installed on these systems,
 
-```
+```sh
 ~$ docker --version
 Docker version 18.06.1-ce, build e68fc7a
 ~$
@@ -83,13 +83,13 @@ Docker version 18.06.1-ce, build e68fc7a
 
 Let’s first install some required packages, run the following commands on all the nodes including master node
 
-```
+```sh
 ~$ sudo apt-get install apt-transport-https curl -y
 ```
 
 Now add Kubernetes package repository key using the following command,
 
-```
+```sh
 :~$ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
 OK
 ```

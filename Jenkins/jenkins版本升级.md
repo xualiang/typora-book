@@ -9,3 +9,4 @@
 重启服务：systemctl stop jenkins
 
 登陆jenkins，升级所有插件并重启jenkins
+

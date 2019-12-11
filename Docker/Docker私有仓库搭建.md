@@ -48,4 +48,7 @@ docker push 172.17.0.2:5000/jenkins
 
  ### 访问私服
 
-curl <http://172.17.0.2:5000/v2/_catalog>
+curl -X GET "http://172.17.0.2:5000/v2/_catalog"
+
+curl 'http://10.10.50.204:5000/v2/alpine/tags/list'
+
