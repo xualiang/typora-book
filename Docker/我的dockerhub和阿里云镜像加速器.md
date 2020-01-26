@@ -12,10 +12,13 @@
 sudo mkdir -p /etc/docker
  sudo tee /etc/docker/daemon.json <<-'EOF'
  {
-   "registry-mirrors": ["<https://8ktmlv98.mirror.aliyuncs.com>"]
+   "registry-mirrors": ["https://8ktmlv98.mirror.aliyuncs.com"]
  }
  EOF
  sudo systemctl daemon-reload
  sudo systemctl restart docker
 ```
 
+### 我的docker Hub
+
+xucl/mima pass0

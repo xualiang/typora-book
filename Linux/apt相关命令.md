@@ -41,6 +41,8 @@ apt-get install -d -o=dir::cache=/tmp apache2 #下载deb包，如果本地已经
 apt list --installed #列出所有已安装的软件包
 dpkg -l
 
+apt-get install --print-uris build-essential  #打印依赖包的下载地址
+
 
 ```
 

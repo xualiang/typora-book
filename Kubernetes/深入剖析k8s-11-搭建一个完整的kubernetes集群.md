@@ -30,6 +30,10 @@ root@k8s_master:~# systemctl restart docker.service
 ```
 
 8. 如果使用Flannel作为网络插件，kubeadm init时需要通过--pod-network-cidr指定网络地址与**flannel.yaml**中保持一致，默认是：10.244.0.0/16
+9. rook存储插件问题
+   * 需要添加系统盘除外的额外硬盘
+   * useAllDevices设置为true才会自动发现硬盘
+   * rook-ceph-mgr和rook-ceph-osd等pod如果不存在，需要重新部署rook前，必须kubelet delete并删除/var/lib/rook目录
 
 ### 一些好用的知识：
 
