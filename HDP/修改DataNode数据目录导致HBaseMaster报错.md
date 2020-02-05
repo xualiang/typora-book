@@ -1,0 +1,5 @@
+namenode启动失败，原因：进入了安全模式，退出安全模式即可
+
+Hbase master启动失败，原因：更改datanode目录导致hbase master在hdfs上的数据块丢失
+
+解决方法：停止HDFS所有服务，将原datanode数据目录下的blk文件拷贝到新目录下，注意：不要选择替换新目录下的blk文件，最后重启HDFS服务，等待namenode自己退出安全模式
