@@ -1,5 +1,3 @@
-- 
-
 ## 一、Flume简介
 
 flume 作为 cloudera 开发的实时日志收集系统，受到了业界的认可与广泛应用。Flume 初始的发行版本目前被统称为 Flume OG（original generation），属于 cloudera。
