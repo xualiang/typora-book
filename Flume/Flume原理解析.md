@@ -62,9 +62,7 @@ source类型：
 
 ### 3.3、Channel
 
-Channel是连接Source和Sink的组件，大家可以将它看做一个数据的缓冲区（数据队列），它可以将事件暂存到内存中也可以持久化到本地磁盘上， 直
-
-到Sink处理完该事件。介绍两个较为常用的Channel， MemoryChannel和FileChannel。
+Channel是连接Source和Sink的组件，大家可以将它看做一个数据的缓冲区（数据队列），它可以将事件暂存到内存中也可以持久化到本地磁盘上， 直到Sink处理完该事件。介绍两个较为常用的Channel， MemoryChannel和FileChannel。
 
 Channel类型：
 
