@@ -8,8 +8,6 @@ OpenSSH_6.6.1p1, OpenSSL 1.0.1e-fips 11 Feb 2013
 [root@vbds ~]# openssl version
 OpenSSL 1.0.1e-fips 11 Feb 2013
 
-
-
 [root@vbds ~]# uname -a
 Linux vbds.xucl.telchina 3.10.0-327.13.1.el7.x86_64 #1 SMP Thu Mar 31 16:04:38 UTC 2016 x86_64 x86_64 x86_64 GNU/Linux
 
@@ -31,23 +29,47 @@ auth   required     pam_securetty.so
 
 ### 升级
 
+#### yum方式升级
+
 如果最新的CentOS发行版中已经解决了高危BUG，可以通过yum update或upgrade直接升级，很简单。不过一定注意update和upgrade的区别！！！！
 
 否则，通过最新源码安装，如下：
 
-#### 卸载openssl
+#### 源码方式升级
 
-[root@vbds ~]# rpm  -qa  |grep openssl
-openssl-libs-1.0.1e-51.el7_2.4.x86_64
-openssl-1.0.1e-51.el7_2.4.x86_64
-openssl098e-0.9.8e-29.el7.centos.3.x86_64
+1. 备份：`mv /etc/ssh/ ./ssh.bak`
+2. 安装编译所需的依赖：`yum -y install gcc zlib-devel openssl-devel`
+3. 下载源码、编译
 
-#### 升级openssl
+下载地址：https://openbsd.hk/pub/OpenBSD/OpenSSH/portable/
 
+```sh
+$ tar -zxf openssh-7.4p1.tar.gz
+$ cd openssh-7.4p1/
+$ ./configure --prefix=/usr --sysconfdir=/etc/ssh
+$ make
+```
 
+4. 卸载旧版：
 
+```sh
+$ rpm -e --nodeps `rpm -qa | grep openssh`
+```
 
+5. 安装并检查：`make install`， `ssh -V`
+6. 配置开机启动：
 
-[root@vic-0 yum.repos.d]# uname -a
-Linux vic-0 2.6.32-431.el6.x86_64 #1 SMP Fri Nov 22 03:15:09 UTC 2013 x86_64 x86_64 x86_64 GNU/Linux
+```sh
+$ cp contrib/redhat/sshd.init /etc/init.d/sshd
+$	chkconfig --add sshd
+```
+
+7. 设置root访问权限
+
+```sh
+$ sed -i '/#PermitRootLogin prohibit-password/c'"PermitRootLogin yes" /etc/ssh/sshd_config
+```
+
+8. 重启sshd服务
+9. ssh登录成功后，关闭telnet服务
 
