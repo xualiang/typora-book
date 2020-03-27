@@ -1,8 +1,4 @@
 ```bash
-安装：
-rpm -ivh docker-ce-17.03.2.ce-1.el7.centos.x86_64.rpm 
-rpm -ivh docker-ce-selinux-17.03.2.ce-1.el7.centos.noarch.rpm 
-
 启动：
 systemctl start docker.service 
 
