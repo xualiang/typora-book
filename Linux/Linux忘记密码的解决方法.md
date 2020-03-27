@@ -168,7 +168,7 @@ CentOS 7的root密码找回与5，6有所不同，因为7采用GRUB2为启动，
 3. 找到LANG=en_US.UTF-8这一行或者倒数二行。
 4. 在尾部添加 空格 single
 5. 使用ctrl+x重启即可
-6.进入模式后输入root密码登录
+6. 进入模式后输入root密码登录
 
 二.修改密码
 1.输入 sudo passwd 当时设置的账号名

@@ -69,19 +69,9 @@ Rancher Kubernetes Engine(RKE)是一款轻量级Kubernetes安装程序，支持�
 
 
 
-
-
 kubectl安装
 
 https://kubernetes.io/docs/tasks/tools/install-kubectl/
 
 https://storage.googleapis.com/kubernetes-release/release/v1.17.3/bin/linux/amd64/kubectl
-
-
-
-## 添加节点遇到的坑
-
-1. 执行rke up --update-only命令所在的目录需要有安装时的文件：cluster.yml、kube_config_cluster.yml、cluster.rkestate
-2. 如果执行失败，需要在执行rke remove，注意：修改cluster.yml中只保留要删除的节点
-3. ingress需要使用80端口
 
