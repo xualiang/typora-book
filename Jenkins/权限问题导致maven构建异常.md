@@ -4,3 +4,4 @@
 ```
 
 原因为：**/software/repos/org/codehaus/plexus****目录的所有者是root****，而不是jenkins，删掉重新下载即可**
+
