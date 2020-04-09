@@ -51,7 +51,7 @@ docker commit -m "add file /tmp/test_commit.txt" -a "xucl" 50c2e38ae20c jenkins
 docker save  -o jenkins.tar jenkinsci/blueocean
 docker load --input jenkins.tar 
 
-docker export -o test_exp_docker.tar 50
+docker export -o test_exp_docker.tar 50c2
 docker import test_exp_docker.tar test_exp_docker
 
 docker login
