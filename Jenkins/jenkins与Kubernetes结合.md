@@ -47,7 +47,7 @@ https://blog.csdn.net/aixiaoyang168/article/details/79767649
 
 ## 使用Kubernetes安装Jenkins
 
-### 制作Jenkins Master镜像
+### 制作Jenkins Master镜像，Dockerfile如下：
 
 ```dockerfile
 FROM 10.10.50.204:5000/jenkins/jenkins:latest
@@ -64,7 +64,7 @@ ENV JENKINS_UC_DOWNLOAD $JENKINS_UC
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
 ```
 
-该镜像安装了如下插件：
+以上Dockerfile中使用的plugins.txt文件定义了预装的插件，如下：
 
 ```sh
 git:latest
@@ -75,6 +75,8 @@ workflow-aggregator:latest
 docker-plugin:latest
 docker-workflow:latest
 kubernetes:latest
+pipeline-utility-steps:latest
+kubernetes-cli:latest
 ```
 
 ### 安装Jenkins Master
