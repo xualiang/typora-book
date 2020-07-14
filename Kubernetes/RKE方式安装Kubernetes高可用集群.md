@@ -75,3 +75,53 @@ https://kubernetes.io/docs/tasks/tools/install-kubectl/
 
 https://storage.googleapis.com/kubernetes-release/release/v1.17.3/bin/linux/amd64/kubectl
 
+## Rancher2安装
+
+### 快速安装单节点
+
+```sh
+docker run -d --restart=unless-stopped \
+-p 80:80 -p 443:443 \
+-v /home/ubuntu/rancher-data:/var/lib/rancher/ \
+-v /var/log/rancher/auditlog:/var/log/auditlog \
+-e AUDIT_LEVEL=3 \
+-e CATTLE_SYSTEM_CATALOG=bundled \
+#-v /etc/<CERT_DIRECTORY>/tls.crt:/etc/rancher/ssl/cert.pem \
+#-v /etc/<CERT_DIRECTORY>/tls.key:/etc/rancher/ssl/key.pem \
+#-v /etc/<CERT_DIRECTORY>/cacerts.pem:/etc/rancher/ssl/cacerts.pem \
+rancher/rancher:stable (或者rancher/rancher:latest)
+```
+
+### 导入现有Kubernetes集群
+
+![image-20200410144209346](../images/image-20200410144209346.png)
+
+![image-20200410144230932](../images/image-20200410144230932.png)
+
+![image-20200410144250050](../images/image-20200410144250050.png)
+
+![image-20200410144327688](../images/image-20200410144327688.png)
+
+下载以上的yaml文件，查看文件使用到中的image，手工pull下来，并上传到公司docker仓库私服，并修改yaml中docker仓库地址，使用公司私服。然后在要导入的kubernetes集群上执行：
+
+```sh
+$ kubectl apply -f imp.yaml
+clusterrole.rbac.authorization.k8s.io/proxy-clusterrole-kubeapiserver unchanged
+clusterrolebinding.rbac.authorization.k8s.io/proxy-role-binding-kubernetes-master unchanged
+namespace/cattle-system created
+serviceaccount/cattle created
+clusterrolebinding.rbac.authorization.k8s.io/cattle-admin-binding unchanged
+secret/cattle-credentials-7d3c6e3 created
+clusterrole.rbac.authorization.k8s.io/cattle-admin unchanged
+deployment.apps/cattle-cluster-agent created
+daemonset.apps/cattle-node-agent created
+```
+
+然后通过kubernetes dashboard查看cattle-system namespace所有负载都是正常的：
+
+![image-20200410145848099](../images/image-20200410145848099.png)
+
+然后，再回到rancher界面，发现添加的集群变为Active状态：
+
+![image-20200410150020459](../images/image-20200410150020459.png)
+
