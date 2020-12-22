@@ -15,3 +15,19 @@ netbootaa64.efi的位置与dhcp配置文件中对应；grub.cfg的位置必须�
 
 
 利用html目录，作为tftp nfs
+
+
+
+oem
+
+settings.ini
+
+default_settings.ini
+
+filesystem.squashfs
+
+unsquashfs
+
+mksquashfs
+
+squashfs-root/usr/share/deepin-installer
