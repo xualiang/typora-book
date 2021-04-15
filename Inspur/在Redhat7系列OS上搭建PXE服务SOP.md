@@ -2,8 +2,6 @@
 
 # 在Redhat7系列OS上搭建PXE服务SOP
 
-作者：产品研发部-研发六处 许存梁
-
 ## 1. PXE介绍
 
 **PXE**（Pre-boot Execution Environment）预启动执行环境，是由Intel开发的网络技术，工作于client/server的网络模式，支持工作站通过网络从远端服务器下载镜像，并由此支持通过网络启动操作系统。
