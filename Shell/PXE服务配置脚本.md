@@ -23,12 +23,21 @@ d.) client端将server上的启动文件经过网络下载到本地运行
  PXE工作原理示意图说明：
 
 1. Client向PXE Server上的DHCP发送IP地址请求消息，DHCP检测Client是否合法（主要是检测Client的网卡MAC地址），如果合法则返回Client的IP地址，同时将启动文件pxelinux.0的位置信息一并传送给Client。
+
 2. Client向PXE Server上的TFTP发送获取pxelinux.0请求消息，TFTP接收到消息之后再向Client发送pxelinux.0大小信息，试探Client是否满意，当TFTP收到Client发回的同意大小信息之后，正式向Client发送pxelinux.0。
+
+   `注：在传统Intel X86平台的操作系统中，bootstrap文件通常为pxelinux.0；而在Arm架构的Linux操作系统中，bootstrap文件通常名称为grubaa64.efi。`
+
 3. Client执行接收到的pxelinux.0文件。
+
 4. Client向TFTP发送针对本机的配置信息（记录在TFTP的pxelinux.cfg目录下），TFTP将配置文件发回Client，继而Client根据配置文件执行后续操作。
+
 5. Client向TFTP发送Linux内核请求信息，TFTP接收到消息之后将内核文件发送给Client。
+
 6. Client向TFTP发送根文件请求信息，TFTP接收到消息之后返回Linux根文件系统。
+
 7. Client启动Linux内核（启动参数已经在4中的配置文件中设置好了）。
+
 8. Client通过NFS或HTTP或FTP下载镜像文件，读取autoyast自动化安装脚本。至此，Client正式进入自动化安装模式开始安装系统直到完成。
 
 脚本：

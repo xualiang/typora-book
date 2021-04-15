@@ -31,3 +31,11 @@ unsquashfs
 mksquashfs
 
 squashfs-root/usr/share/deepin-installer
+
+mkisofs
+
+dstat
+
+
+
+镜像体积太大，内存不够用，无法自动安装，安装失败
