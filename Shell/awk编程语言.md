@@ -13,7 +13,7 @@
 命令结构:
 
 ```sh
-awk 'BEGIN{ commands } pattern{ commands } END{ commands }'
+awk 'BEGIN{ commands } pattern{ commands } END{ commands }'  filename
 ```
 
 下面的流程图描述出了 AWK 的工作流程：
@@ -432,7 +432,7 @@ Processing Record -  5
 5 Students Records are processed
 ```
 
-### NF:一条记录的记录数目
+### NF:一条记录的字段数目
 
 NF(Number for Field)表示的是，一条记录的字段的数目.　它在判断某条记录是否所有字段都存在时非常有用。 让我们观察 student-mark 文件如下:
 
@@ -448,7 +448,7 @@ Dayan 2415 30 47
 接着下面的Awk程序，打印了记录数(NR),以及该记录的字段数目: 因此可以非常容易的发现那些数据丢失了。
 
 ```sh
-$ awk '{print NR,"->",NF}' student-marks
+$ awk {print NR,"->",NF}' student-marks
 1 -> 5
 2 -> 5
 3 -> 4

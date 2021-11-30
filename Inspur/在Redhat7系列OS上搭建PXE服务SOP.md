@@ -209,7 +209,7 @@ CS5260F机型为ARM64处理器平台，bootstrap文件名称为grubaa64.efi，�
 cp /var/www/html/CS5260F/UOS/1030/EFI/BOOT/grubaa64.efi /var/www/html/CS5260F/ 
 ```
 
-bootstrap文件需要读取一个配置文件，在Linux中通常名称为grub.cfg，这个文件决定了屏幕上显示出什么样的系统安装菜单。、
+bootstrap文件需要读取一个配置文件，在Linux中通常名称为grub.cfg，这个文件决定了屏幕上显示出什么样的系统安装菜单。
 
 `注：通常情况下将grub.cfg文件与grubaa64.efi文件放置在同一个目录下即可，但也有例外，此处不再展开讨论。`
 
@@ -242,7 +242,7 @@ set timeout=10
 
 menuentry 'Net Install Kylin 20201202' --class red --class gnu-linux --class gnu --class os {
     set root=(tftp,192.168.17.2)
-    linux /CS5260F/Kylin/20201202/images/pxeboot/vmlinuz ro inst.geoloc=0 console=ttyAMA0 console=tty0 rd.iscsi.waitnet=0 ip=dhcp inst.repo=http://192.168.17.2/CS5260F/Kylin/20201202 inst.ks=http://192.168.17.2/CS5260F/Kylin/kylin-ks.cfg rd.debug rd.udev.debug systemd.log_level=debug
+    linux /CS5260F/Kylin/20201202/images/pxeboot/vmlinuz ro inst.geoloc=0 rd.iscsi.waitnet=0 ip=dhcp inst.repo=http://192.168.17.2/CS5260F/Kylin/20201202 inst.ks=http://192.168.17.2/CS5260F/Kylin/kylin-ks.cfg rd.debug rd.udev.debug systemd.log_level=debug
     initrd /CS5260F/Kylin/20201202/images/pxeboot/initrd.img
 }
 

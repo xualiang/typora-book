@@ -38,7 +38,6 @@ aliang:
 1.固件层面的配置：开关iommu、开关单路双路、开关兼容模式。
 2.软件层面的配置：增加了patch-phytium-4.19.5内核补丁。
 
-
 一个像素:
 所以为什么要配置BIOS原因就是这个
 
@@ -68,20 +67,30 @@ aliang:
 一个像素:
 一个内核补丁，一个内核配置文件，一个日志。
 
-
 一个像素:
  下载linux-4.19.5.tar.gz源码包
 下载地址：https://mirrors.tuna.tsinghua.edu.cn/kernel/v4.x/linux-4.19.5.tar.gz
 安装升级源码包
-# tar xvf linux-4.19.5.tar.gz
-# cd linux-4.19.5
-# patch -p1 < ../patch-phytium-4.19.5
-# make menuconfig (退出、保存) 在linux-4.19.5目录下生成.config文件。
-# cp ../config-ft2000plus   .config  (把config-ft2000plus文件覆盖linux-4.19.5目录下的.config文件)
-# make menuconfig (选择General setup选项----->选择Local version - append to kernel release (NEW)选项在这个选项填写名字，编译出来的内核就是这个名字------>保存、退出)
-# make -j64
-# make modules_install
-# make install 
+
+tar xvf linux-4.19.5.tar.gz
+
+cd linux-4.19.5
+
+patch -p1 < ../patch-phytium-4.19.5
+
+make menuconfig (退出、保存) 在linux-4.19.5目录下生成.config文件。
+
+cp ../config-ft2000plus   .config  (把config-ft2000plus文件覆盖linux-4.19.5目录下的.config文件)
+
+make menuconfig (选择General setup选项----->选择Local version - append to kernel release (NEW)选项在这个选项填写名字，编译出来的内核就是这个名字------>保存、退出)
+
+make -j64
+
+make modules_install
+
+make install 
+
+![image-20210510234542088](../images/image-20210510234542088.png)
 
 <img src="../images/image-20210319093432093.png" alt="image-20210319093432093" style="zoom:50%;" />
 
